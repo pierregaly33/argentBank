@@ -9,7 +9,7 @@ function Navbar() {
                 <img className="main-nav-logo-image" src={logo} alt="Logo argentBank" />
             </NavLink>
             <div>
-                <NavLink to="" className="main-nav-item">
+                <NavLink to="/signin" className="main-nav-item">
                     <i class="fa-solid fa-circle-user"></i>
                     Sign In
                 </NavLink>
