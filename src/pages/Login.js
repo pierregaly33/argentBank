@@ -24,7 +24,9 @@ function Login() {
                             <input type="checkbox" id="remember-me" />
                             <label htmlFor="remember-me">Remember-me</label>
                         </div>
-                        <NavLink className="sign-in-button">Sign In</NavLink>
+                        <NavLink to="/profile" className="sign-in-button">
+                            Sign In
+                        </NavLink>
                     </form>
                 </section>
             </main>
