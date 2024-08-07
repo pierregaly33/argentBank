@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { argentBankApi } from "./UserSlice";
+import authSlice from "./AuthSlice";
 
-export default configureStore({
+const store = configureStore({
     reducer: {
         argentBank: argentBankApi.reducer,
+        auth: authSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(argentBankApi.middleware),
 });
+export default store;

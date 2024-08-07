@@ -3,24 +3,28 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { usePostUserLoginMutation } from "../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
-import User from "./User";
+import { useDispatch } from "react-redux";
+import { setToken } from "../redux/AuthSlice";
 
 function Login() {
-    const [postUserLogin, { isLoading }] = usePostUserLoginMutation();
+    const [postUserLogin, { error }] = usePostUserLoginMutation();
     const [username, setUsername] = useState("tony@stark.com");
     const [password, setPassword] = useState("password123");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const response = await postUserLogin({ email: username, password }).unwrap();
-            if (response) {
+        postUserLogin({ email: username, password })
+            .unwrap()
+            .then((response) => {
+                const token = response.body.token;
+                dispatch(setToken({ token }));
                 navigate("/profile");
-            }
-        } catch (error) {
-            console.error("Failed to login:", error);
-        }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
