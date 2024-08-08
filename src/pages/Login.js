@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { usePostUserLoginMutation } from "../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setToken } from "../redux/AuthSlice";
+import { login } from "../redux/AuthSlice";
 
 function Login() {
     const [postUserLogin, { error }] = usePostUserLoginMutation();
@@ -24,10 +24,7 @@ function Login() {
             .unwrap()
             .then((response) => {
                 const token = response.body.token;
-                dispatch(setToken({ token }));
-                if (rememberMe === true) {
-                    localStorage.setItem("token", token);
-                }
+                dispatch(login({ token, rememberMe }));
                 navigate("/profile");
             })
             .catch((error) => {
