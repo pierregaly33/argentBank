@@ -10,8 +10,13 @@ function Login() {
     const [postUserLogin, { error }] = usePostUserLoginMutation();
     const [username, setUsername] = useState("tony@stark.com");
     const [password, setPassword] = useState("password123");
+    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const rememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    };
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -20,6 +25,9 @@ function Login() {
             .then((response) => {
                 const token = response.body.token;
                 dispatch(setToken({ token }));
+                if (rememberMe === true) {
+                    localStorage.setItem("token", token);
+                }
                 navigate("/profile");
             })
             .catch((error) => {
@@ -54,7 +62,7 @@ function Login() {
                             />
                         </div>
                         <div className="input-remember">
-                            <input type="checkbox" id="remember-me" />
+                            <input type="checkbox" id="remember-me" checked={rememberMe} onChange={rememberMeChange} />
                             <label htmlFor="remember-me">Remember-me</label>
                         </div>
                         <button onClick={(event) => onSubmit(event)} className="sign-in-button">
