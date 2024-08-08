@@ -3,16 +3,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/img/argentBankLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/AuthSlice";
+import { usePostUserProfileMutation } from "../redux/UserSlice";
 
 function Navbar() {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [postUserProfile] = usePostUserProfileMutation();
+
     const onLogout = () => {
         dispatch(logout());
         navigate("/");
-        localStorage.removeItem("token");
     };
     return (
         <nav className="main-nav">
@@ -36,6 +38,7 @@ function Navbar() {
                         <i class="fa fa-sign-out"></i>
                         Sign Out
                     </div>
+                    <button onClick={postUserProfile}></button>
                 </div>
             )}
         </nav>
