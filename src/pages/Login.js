@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/AuthSlice";
 
 function Login() {
-    const [postUserLogin, { error }] = usePostUserLoginMutation();
+    const [postUserLogin] = usePostUserLoginMutation();
     const [username, setUsername] = useState("tony@stark.com");
     const [password, setPassword] = useState("password123");
     const [rememberMe, setRememberMe] = useState(false);
