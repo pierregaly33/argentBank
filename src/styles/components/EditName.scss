@@ -1,6 +1,38 @@
 .header {
     color: #FFF;
     margin-bottom: 2rem;
+    .form-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: .5rem;
+        .main-edit-inputs {
+            display: flex;
+            column-gap: .5rem;
+            .edit-input {
+                border-radius: 5px;
+                border-color: #B8C4CE;
+                height: 30px;
+                width: 160px;
+                font-size: 14px;
+                padding-left: .5rem;
+            }
+        }
+        .main-edit-buttons {
+            display: flex;
+            column-gap: .5rem;
+            .edit-button-option {
+                border-radius: 5px;
+                border-color: #B1B1F0;
+                text-align: center;
+                width: 80px;
+                color: #675BF5;
+                height: 30px;
+                border: 1px solid;
+                cursor: pointer;
+            }
+        }
+    }
     .edit-button {
         border-color: #00bc77;
         background-color: #00bc77;

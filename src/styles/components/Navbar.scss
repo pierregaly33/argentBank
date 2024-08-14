@@ -24,6 +24,11 @@
         margin-right: 0.5rem;
         &:hover {
             text-decoration: underline;
+            cursor: pointer;
         }
+    }
+
+    div {
+        display: flex;
     }
 }
