@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { usePostUserProfileMutation, usePutUserProfileMutation } from "../redux/UserSlice";
+import React, { useState } from "react";
+import { useGetUserProfileQuery, usePutUserProfileMutation } from "../redux/UserSlice";
 
 function EditName() {
-    const [postUserProfile, { data }] = usePostUserProfileMutation();
     const [showEdit, setShowEdit] = useState(false);
     const [putUserProfile] = usePutUserProfileMutation();
+    const { data } = useGetUserProfileQuery();
 
     const [newFirstName, setNewFirstName] = useState("");
     const [newLastName, setNewLastName] = useState("");
@@ -17,10 +17,6 @@ function EditName() {
         });
         setShowEdit(false);
     };
-
-    useEffect(() => {
-        postUserProfile({});
-    }, [postUserProfile]);
 
     return (
         <div className="header">

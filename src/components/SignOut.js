@@ -1,22 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../redux/AuthSlice";
 import { useDispatch } from "react-redux";
-import { usePostUserProfileMutation } from "../redux/UserSlice";
+import { useGetUserProfileQuery } from "../redux/UserSlice";
 
 function SignOut() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [postUserProfile, { data }] = usePostUserProfileMutation();
+    const { data } = useGetUserProfileQuery();
 
     const onLogout = () => {
         dispatch(logout());
         navigate("/");
     };
-
-    useEffect(() => {
-        postUserProfile();
-    }, [postUserProfile]);
 
     return (
         <div>

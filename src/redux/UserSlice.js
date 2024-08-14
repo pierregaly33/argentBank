@@ -17,11 +17,12 @@ export const argentBankApi = createApi({
                 body: { email, password },
             }),
         }),
-        postUserProfile: builder.mutation({
+        getUserProfile: builder.query({
             query: () => ({
                 url: "/user/profile",
                 method: "POST",
             }),
+            providesTags: ["profile"],
         }),
         putUserProfile: builder.mutation({
             query: ({ firstName, lastName }) => ({
@@ -29,8 +30,9 @@ export const argentBankApi = createApi({
                 method: "PUT",
                 body: { firstName, lastName },
             }),
+            invalidatesTags: ["profile"],
         }),
     }),
 });
 
-export const { usePostUserLoginMutation, usePostUserProfileMutation, usePutUserProfileMutation } = argentBankApi;
+export const { usePostUserLoginMutation, usePutUserProfileMutation, useGetUserProfileQuery } = argentBankApi;
