@@ -15,17 +15,17 @@ function SignOut() {
     };
 
     useEffect(() => {
-        postUserProfile({});
+        postUserProfile();
     }, [postUserProfile]);
 
     return (
         <div>
             <NavLink to="/profile" className="main-nav-item">
-                <i class="fa fa-user-circle"></i>
+                <i className="fa fa-user-circle"></i>
                 {data?.body?.firstName}
             </NavLink>
             <div to="/" className="main-nav-item" onClick={onLogout}>
-                <i class="fa fa-sign-out"></i>
+                <i className="fa fa-sign-out"></i>
                 Sign Out
             </div>
         </div>

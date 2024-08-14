@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { usePostUserProfileMutation } from "../redux/UserSlice";
+import { usePostUserProfileMutation, usePutUserProfileMutation } from "../redux/UserSlice";
 
 function EditName() {
     const [postUserProfile, { data }] = usePostUserProfileMutation();
     const [showEdit, setShowEdit] = useState(false);
+    const [putUserProfile] = usePutUserProfileMutation();
+
+    const [newFirstName, setNewFirstName] = useState("");
+    const [newLastName, setNewLastName] = useState("");
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        putUserProfile({
+            firstName: newFirstName,
+            lastName: newLastName,
+        });
+        setShowEdit(false);
+    };
 
     useEffect(() => {
         postUserProfile({});
@@ -26,11 +39,21 @@ function EditName() {
             ) : (
                 <form className="form-edit">
                     <div className="main-edit-inputs">
-                        <input type="text" className="edit-input" placeholder={data.body.firstName} />
-                        <input type="text" className="edit-input" placeholder={data.body.lastName} />
+                        <input
+                            type="text"
+                            className="edit-input"
+                            onChange={(e) => setNewFirstName(e.target.value)}
+                            placeholder={data?.body?.firstName}
+                        />
+                        <input
+                            type="text"
+                            className="edit-input"
+                            onChange={(e) => setNewLastName(e.target.value)}
+                            placeholder={data?.body?.lastName}
+                        />
                     </div>
                     <div className="main-edit-buttons">
-                        <button className="edit-button-option" type="submit">
+                        <button className="edit-button-option" onClick={onSubmit}>
                             Save
                         </button>
                         <button

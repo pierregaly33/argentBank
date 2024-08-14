@@ -18,12 +18,19 @@ export const argentBankApi = createApi({
             }),
         }),
         postUserProfile: builder.mutation({
-            query: ({}) => ({
+            query: () => ({
                 url: "/user/profile",
                 method: "POST",
+            }),
+        }),
+        putUserProfile: builder.mutation({
+            query: ({ firstName, lastName }) => ({
+                url: "/user/profile",
+                method: "PUT",
+                body: { firstName, lastName },
             }),
         }),
     }),
 });
 
-export const { usePostUserLoginMutation, usePostUserProfileMutation } = argentBankApi;
+export const { usePostUserLoginMutation, usePostUserProfileMutation, usePutUserProfileMutation } = argentBankApi;
