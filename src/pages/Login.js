@@ -8,8 +8,8 @@ import { login } from "../redux/AuthSlice";
 
 function Login() {
     const [postUserLogin] = usePostUserLoginMutation();
-    const [username, setUsername] = useState("tony@stark.com");
-    const [password, setPassword] = useState("password123");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();

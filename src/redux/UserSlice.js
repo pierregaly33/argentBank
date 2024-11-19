@@ -16,6 +16,7 @@ export const argentBankApi = createApi({
                 method: "POST",
                 body: { email, password },
             }),
+            invalidatesTags: ["profile"],
         }),
         getUserProfile: builder.query({
             query: () => ({
